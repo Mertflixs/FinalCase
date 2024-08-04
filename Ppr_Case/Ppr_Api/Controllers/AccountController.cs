@@ -51,10 +51,10 @@ namespace Ppr_Api.Controllers
             return res;
         }
 
-        [HttpGet("{accountId}")]
-        public async Task<ApiResponse<AccountResponse>> Get([FromRoute] long AccountNumber)
+        [HttpGet("{AccountId}")]
+        public async Task<ApiResponse<AccountResponse>> Get([FromRoute] long AccountId)
         {
-            var operation = new GetAccountByIdQuery(AccountNumber);
+            var operation = new GetAccountByIdQuery(AccountId);
             var res = await mediator.Send(operation);
             return res;
         }
@@ -67,18 +67,18 @@ namespace Ppr_Api.Controllers
             return res;
         }
 
-        [HttpPut("{accountId}")]
-        public async Task<ApiResponse> Put(long AccountNumber, [FromBody] AccountRequest value)
+        [HttpPut("{AccountId}")]
+        public async Task<ApiResponse> Put(long AccountId, [FromBody] AccountRequest value)
         {
-            var operation = new UpdateAccountCommand(AccountNumber, value);
+            var operation = new UpdateAccountCommand(AccountId, value);
             var res = await mediator.Send(operation);
             return res;
         }
 
-        [HttpDelete("{accountId}")]
-        public async Task<ApiResponse> Delete(long AccountNumber)
+        [HttpDelete("{AccountId}")]
+        public async Task<ApiResponse> Delete(long AccountId)
         {
-            var operation = new DeleteAccountCommand(AccountNumber);
+            var operation = new DeleteAccountCommand(AccountId);
             var res = await mediator.Send(operation);
             return res;
         }
