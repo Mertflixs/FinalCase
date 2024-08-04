@@ -1,9 +1,34 @@
+using Ppr_Base;
+using Ppr_Bussiness;
+using Ppr_Bussiness.Cqrs;
+using Ppr_Bussiness.Mapper;
+using Ppr_Data.Context;
+using Ppr_Data.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using MediatR;
+using AutoMapper;
+using System.Reflection;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionStringSql = builder.Configuration.GetConnectionString("MsSqlConnection");
+builder.Services.AddDbContext<ParaDbContext>(options => options.UseSqlServer(connectionStringSql));
+
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+var config = new MapperConfiguration(cfg => { cfg.AddProfile(new MapperConfig()); });
+builder.Services.AddSingleton(config.CreateMapper());
+
+// Add Authorization, Controllers and MediatR services
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
+//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(CreateAccountCommand).GetTypeInfo().Assembly);
 
 var app = builder.Build();
 
@@ -15,30 +40,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+app.UseAuthorization();
+app.MapControllers();
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
