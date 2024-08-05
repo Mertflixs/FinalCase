@@ -34,6 +34,12 @@ public partial class ApiResponse<T>
     public DateTime ServerDate { get; set; } = DateTime.UtcNow;
     public Guid ReferenceNumber { get; set; } = Guid.NewGuid();
 
+    public ApiResponse()
+    {
+        IsSuccess = false;
+        Message = "Error";
+    }
+
     public ApiResponse(T data)
     {
         IsSuccess = true;

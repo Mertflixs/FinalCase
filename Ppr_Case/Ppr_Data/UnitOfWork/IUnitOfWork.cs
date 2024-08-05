@@ -11,4 +11,5 @@ public interface IUnitOfWork {
     Task Complete();
     Task CompleteWithTransaction();
     IGenericRepository<Account> AccountRepository { get; }
+    IGenericRepository<Category> CategoryRepository { get; } 
 }

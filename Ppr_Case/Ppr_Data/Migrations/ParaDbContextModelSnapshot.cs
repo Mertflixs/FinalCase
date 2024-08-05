@@ -39,8 +39,8 @@ namespace Ppr_Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("AccountNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("AccountNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("AccountPassword")
                         .IsRequired()
@@ -83,6 +83,46 @@ namespace Ppr_Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Account", "dbo");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CategoryTags")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CategoryUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUser")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category", "dbo");
                 });
 #pragma warning restore 612, 618
         }

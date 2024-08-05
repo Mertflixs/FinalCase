@@ -3,7 +3,7 @@ using Ppr_Base.Schema;
 namespace Ppr_Schema;
 public class AccountRequest : BaseRequest
 {
-    public int AccountNumber { get; set; }
+    public long AccountNumber { get; set; }
     public string AccountName { get; set;}
     public string AccountSurname { get; set;}
     public string AccountEmail { get; set;}
@@ -16,7 +16,7 @@ public class AccountRequest : BaseRequest
 
 public class AccountResponse : BaseResponse
 {
-    public int AccountNumber { get; set; }
+    public long AccountNumber { get; set; }
     public string AccountName { get; set; }
     public string AccountSurname { get; set; }
     public string AccountEmail { get; set; }

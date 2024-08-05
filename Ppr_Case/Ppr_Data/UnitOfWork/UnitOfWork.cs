@@ -12,12 +12,15 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly ParaDbContext dbContext;
     public IGenericRepository<Account> AccountRepository { get; }
+    public IGenericRepository<Category> CategoryRepository { get; }
 
     public UnitOfWork(ParaDbContext dbContext)
     {
         this.dbContext = dbContext;
 
         AccountRepository = new GenericRepository<Account>(this.dbContext);
+
+        CategoryRepository = new GenericRepository<Category>(this.dbContext);
     }
 
     public void Dispose() { }

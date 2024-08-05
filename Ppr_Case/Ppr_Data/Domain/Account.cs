@@ -10,7 +10,7 @@ namespace Ppr_Data.Domain;
 [Table("Account", Schema = "dbo")]
 public class Account : BaseEntity
 {
-    public int AccountNumber { get; set; }
+    public long AccountNumber { get; set; }
     public string AccountName { get; set; }
     public string AccountSurname { get; set; }
     public string AccountEmail { get; set; }

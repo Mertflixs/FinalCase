@@ -14,5 +14,8 @@ public class MapperConfig : Profile
     {
         CreateMap<Account, AccountResponse>();
         CreateMap<AccountRequest, Account>();
+
+        CreateMap<Category, CategoryResponse>();
+        CreateMap<CategoryRequest, Category>();
     }
 }

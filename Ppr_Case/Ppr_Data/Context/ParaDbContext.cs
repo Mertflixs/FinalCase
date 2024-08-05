@@ -16,9 +16,11 @@ public class ParaDbContext : DbContext
     }
 
     public DbSet<Account> Accounts { get; set; }
+    public DbSet<Category> Categories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new AccountConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
     }
 }

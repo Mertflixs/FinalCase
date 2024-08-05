@@ -39,15 +39,15 @@ IRequestHandler<DeleteAccountCommand, ApiResponse>
 
     public async Task<ApiResponse> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
     {
-        var existingEntity = await unitOfWork.AccountRepository.GetById(request.AccountId);
-        if (existingEntity == null)
+        var entity = await unitOfWork.AccountRepository.GetById(request.AccountId);
+        if (entity == null)
         {
             return new ApiResponse ();
         }
 
-        mapper.Map(request.Request, existingEntity);
-        existingEntity.InsertUser = existingEntity.InsertUser;
-        unitOfWork.AccountRepository.Update(existingEntity);
+        mapper.Map(request.Request, entity);
+        entity.InsertUser = entity.InsertUser;
+        unitOfWork.AccountRepository.Update(entity);
         await unitOfWork.Complete();
         return new ApiResponse();
     }
