@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ppr_Data.Context;
 
@@ -11,9 +12,11 @@ using Ppr_Data.Context;
 namespace Ppr_Data.Migrations
 {
     [DbContext(typeof(ParaDbContext))]
-    partial class ParaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240807214207_UserTable")]
+    partial class UserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

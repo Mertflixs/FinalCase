@@ -15,7 +15,7 @@ public class ProductRequest : BaseRequest
     public string ProductFeatures { get; set; }
     public double RewardPercentage { get; set; }
     public double MaxRewardAmount { get; set; }
-    public long CategoryId { get; set; }
+    public long CategoryId { get; set; } // categoryId categoryTable
 }
 
 public class ProductResponse : BaseResponse
@@ -27,5 +27,5 @@ public class ProductResponse : BaseResponse
     public string ProductFeatures { get; set; }
     public double RewardPercentage { get; set; }
     public double MaxRewardAmount { get; set; }
-    public long CategoryId { get; set; }
+    public long CategoryId { get; set; } // categoryId CategoryTable added 
 }

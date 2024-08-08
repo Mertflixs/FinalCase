@@ -12,4 +12,8 @@ public interface IUnitOfWork {
     Task CompleteWithTransaction();
     IGenericRepository<Account> AccountRepository { get; }
     IGenericRepository<Category> CategoryRepository { get; } 
+    IGenericRepository<Product> ProductRepository { get; }
+    IGenericRepository<Order> OrderRepository { get; }
+    IGenericRepository<OrderDetail> OrderDetailRepository { get; }
+    IGenericRepository<Coupon> CouponRepository { get; }
 }
