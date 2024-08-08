@@ -12,6 +12,7 @@ public class CouponRequest : BaseRequest
     public string CouponName { get; set;}
     public int CouponAmount { get; set;}
     public string CouponCode { get; set;}
+    public DateTime ExpryDate { get; set;}
 }
 
 public class CouponResponse : BaseResponse
@@ -20,4 +21,5 @@ public class CouponResponse : BaseResponse
     public string CouponName { get; set; }
     public int CouponAmount { get; set; }
     public string CouponCode { get; set; }
+    public DateTime ExpryDate { get; set; }
 }

@@ -35,5 +35,9 @@ public class MapperConfig : Profile
         //Coupon Mapping
         CreateMap<Coupon, CouponResponse>();
         CreateMap<CouponRequest, Coupon>();
+
+        //Point Mapping
+        CreateMap<Point, PointResponse>();
+        CreateMap<PointRequest, Point>();
     }
 }

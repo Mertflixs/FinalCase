@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public IGenericRepository<Order> OrderRepository { get; }
     public IGenericRepository<OrderDetail> OrderDetailRepository { get; }
     public IGenericRepository<Coupon> CouponRepository { get; }
+    public IGenericRepository<Point> PointRepository { get; }
 
     public UnitOfWork(ParaDbContext dbContext)
     {
@@ -33,6 +34,8 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         OrderDetailRepository = new GenericRepository<OrderDetail>(this.dbContext);
 
         CouponRepository = new GenericRepository<Coupon>(this.dbContext);
+
+        PointRepository = new GenericRepository<Point>(this.dbContext);
     }
 
     public void Dispose() { }

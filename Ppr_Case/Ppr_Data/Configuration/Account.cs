@@ -42,5 +42,11 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .IsRequired(true)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.HasMany(x => x.Point)
+            .WithOne(x => x.Account)
+            .HasForeignKey(x => x.AccountId)
+            .IsRequired(true)
+            .OnDelete(DeleteBehavior.Cascade);
+
     }
 }

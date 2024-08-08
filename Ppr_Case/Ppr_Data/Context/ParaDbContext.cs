@@ -22,6 +22,7 @@ public class ParaDbContext : DbContext
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Coupon> Coupons { get; set; }
     public DbSet<ProductCategory> ProductCategories { get; set; }
+    public DbSet<Point> Points { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,5 +33,6 @@ public class ParaDbContext : DbContext
         modelBuilder.ApplyConfiguration(new OrderConfiguration());
         modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
         modelBuilder.ApplyConfiguration(new CouponConfiguration());
+        modelBuilder.ApplyConfiguration(new PointConfiguration());
     }
 }

@@ -8,18 +8,18 @@ using Ppr_Data.Domain;
 
 namespace Ppr_Data.Configuration;
 
-public class CouponConfiguration : IEntityTypeConfiguration<Coupon>
+public class PointConfiguration : IEntityTypeConfiguration<Point>
 {
-    public void Configure(EntityTypeBuilder<Coupon> builder)
+    public void Configure(EntityTypeBuilder<Point> builder)
     {
         builder.Property(x => x.InsertDate).IsRequired(true);
         builder.Property(x => x.IsActive).IsRequired(true);
         builder.Property(x => x.InsertUser).IsRequired(true).HasMaxLength(128);
 
-        builder.Property(x => x.CouponId).IsRequired(true);
-        builder.Property(x => x.CouponName).IsRequired(true).HasMaxLength(128);
-        builder.Property(x => x.CouponAmount).IsRequired(true);
-        builder.Property(x => x.CouponCode).IsRequired(true);
-        builder.Property(x => x.ExpryDate).IsRequired(true);
+        builder.Property(x => x.PointId).IsRequired(true);
+        builder.Property(x => x.TotalPoint);
+
+        builder.Property(x => x.AccountId).IsRequired(true);
+        builder.HasIndex(x => x.AccountId);
     }
 }

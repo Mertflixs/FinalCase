@@ -15,4 +15,5 @@ public class Coupon : BaseEntity
     public string CouponName { get; set; }
     public int CouponAmount { get; set; }
     public string CouponCode { get; set; }
+    public DateTime ExpryDate { get; set; }
 }
