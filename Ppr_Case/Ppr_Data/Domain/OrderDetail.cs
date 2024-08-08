@@ -10,9 +10,8 @@ namespace Ppr_Data.Domain;
 [Table("OrderDetail", Schema = "dbo")]
 public class OrderDetail : BaseEntity
 {
-    public long OrderDetailId { get; set; }
     public long OrderId { get; set; }
-    public long CustomerId { get; set; }
-    public long ProductId { get; set; }
+    public virtual Order Order { get; set; }
+    public long OrderDetailId { get; set; }
     public int Quantity { get; set; }
 }

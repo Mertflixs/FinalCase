@@ -27,8 +27,8 @@ internal class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public async Task<T?> GetById(long Id, params string[] includes)
     {
         var query = dbContext.Set<T>().AsQueryable();
-        query = includes.Aggregate(query, (curr, inc) => Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include(curr, inc));
-        return await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(query, x => x.Id == Id);
+        query = includes.Aggregate(query, (current, inc) => EntityFrameworkQueryableExtensions.Include(current, inc));
+        return await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(query, x => x.Id == Id);
     }
 
     public async Task<T> Insert(T entity)
@@ -52,7 +52,7 @@ internal class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public async Task Delete(long Id)
     {
-        var entity = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(dbContext.Set<T>(), x => x.Id == Id);
+        var entity = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(dbContext.Set<T>(), x => x.Id == Id);
         if (entity is not null)
             dbContext.Set<T>().Remove(entity);
     }
@@ -60,22 +60,21 @@ internal class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public async Task<List<T>> Where(Expression<Func<T, bool>> expression, params string[] includes)
     {
         var query = dbContext.Set<T>().Where(expression).AsQueryable();
-        query = includes.Aggregate(query, (curr, inc) => Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include(curr, inc));
-        return await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync(query);
+        query = includes.Aggregate(query, (current, inc) => EntityFrameworkQueryableExtensions.Include(current, inc));
+        return await EntityFrameworkQueryableExtensions.ToListAsync(query);
     }
 
     public async Task<T> FirstOrDefault(Expression<Func<T, bool>> expression, params string[] includes)
     {
         var query = dbContext.Set<T>().AsQueryable();
-        query = includes.Aggregate(query, (curr, inc) => Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include(curr, inc));
+        query = includes.Aggregate(query, (current, inc) => EntityFrameworkQueryableExtensions.Include(current, inc));
         return query.Where(expression).FirstOrDefault();
     }
 
     public async Task<List<T>> GetAll(params string[] includes)
     {
         var query = dbContext.Set<T>().AsQueryable();
-        query = includes.Aggregate(query, (curr, inc) =>
-        Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include(curr, inc));
-        return await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync(query);
+        query = includes.Aggregate(query, (current, inc) => EntityFrameworkQueryableExtensions.Include(current, inc));
+        return await EntityFrameworkQueryableExtensions.ToListAsync(query);
     }
 }

@@ -14,4 +14,6 @@ public class Category : BaseEntity
     public string CategoryName { get; set; }
     public string CategoryUrl { get; set; }
     public string CategoryTags { get; set; }
+
+    public virtual List<ProductCategory> ProductCategory { get; set; }
 }

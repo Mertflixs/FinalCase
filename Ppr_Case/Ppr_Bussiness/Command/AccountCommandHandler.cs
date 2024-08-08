@@ -29,7 +29,7 @@ IRequestHandler<DeleteAccountCommand, ApiResponse>
     public async Task<ApiResponse<AccountResponse>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
         var mapped = mapper.Map<AccountRequest, Account>(request.Request);
-        mapped.AccountNumber = new Random().Next(1000000, 9999999);
+        mapped.AccountId = new Random().Next(1000000, 9999999);
         await unitOfWork.AccountRepository.Insert(mapped);
         await unitOfWork.Complete();
 

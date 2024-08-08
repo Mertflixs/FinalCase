@@ -8,18 +8,17 @@ using Ppr_Data.Domain;
 
 namespace Ppr_Data.Configuration;
 
-public class OrderDetailConfiguration : IEntityTypeConfiguration<OrderDetail>
+public class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCategory>
 {
-    public void Configure(EntityTypeBuilder<OrderDetail> builder)
+    public void Configure(EntityTypeBuilder<ProductCategory> builder)
     {
         builder.Property(x => x.InsertDate).IsRequired(true);
         builder.Property(x => x.IsActive).IsRequired(true);
         builder.Property(x => x.InsertUser).IsRequired(true).HasMaxLength(128);
+        
+        builder.HasKey(pc => new { pc.ProductId, pc.CategoryId });
 
-        builder.Property(x => x.OrderDetailId).IsRequired(true);
-        builder.Property(x => x.Quantity).IsRequired(true);
-
-        builder.Property(x => x.OrderId).IsRequired(true);
-        builder.HasIndex(x => x.OrderId);
+        builder.Property(x => x.AccountId).IsRequired(true);
+        builder.HasIndex(x => x.AccountId);
     }
 }

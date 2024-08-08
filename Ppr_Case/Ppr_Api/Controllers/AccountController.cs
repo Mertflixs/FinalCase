@@ -32,13 +32,13 @@ namespace Ppr_Api.Controllers
 
         [HttpGet("ByParamaters")]
         public async Task<ApiResponse<List<AccountResponse>>> GetByParameters(
-            [FromQuery] long? AccountNumber,
+            [FromQuery] long? AccountId,
             [FromQuery] string? AccountName = null,
             [FromQuery] string? AccountSurname = null,
             [FromQuery] string? AccountEmail = null
         )
         {
-            var operation = new GetAccountByParametersQuery(AccountNumber, AccountName, AccountSurname, AccountEmail);
+            var operation = new GetAccountByParametersQuery(AccountId, AccountName, AccountSurname, AccountEmail);
             var res = await mediator.Send(operation);
             return res;
         }

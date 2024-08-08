@@ -21,12 +21,14 @@ public class ParaDbContext : DbContext
     public DbSet<Order> Orders { get; set;}
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Coupon> Coupons { get; set; }
+    public DbSet<ProductCategory> ProductCategories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new AccountConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductCategoryConfiguration());
         modelBuilder.ApplyConfiguration(new OrderConfiguration());
         modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
         modelBuilder.ApplyConfiguration(new CouponConfiguration());

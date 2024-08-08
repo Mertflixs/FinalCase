@@ -17,5 +17,5 @@ public class Product : BaseEntity
     public string ProductFeatures { get; set; }
     public double RewardPercentage { get; set; }
     public double MaxRewardAmount { get; set; }
-    public long CategoryId { get; set; }
+    public virtual List<ProductCategory> ProductCategory { get; set; }
 }

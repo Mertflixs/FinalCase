@@ -24,6 +24,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(x => x.ProductFeatures).HasMaxLength(1000);
         builder.Property(x => x.RewardPercentage).IsRequired().HasPrecision(5, 2);
         builder.Property(x => x.MaxRewardAmount).IsRequired().HasPrecision(18, 2);
-        builder.Property(x => x.CategoryId).IsRequired();
+
+        builder.HasMany(p => p.ProductCategory)
+              .WithOne(pc => pc.Product)
+              .HasForeignKey(pc => pc.ProductId);
     }
 }

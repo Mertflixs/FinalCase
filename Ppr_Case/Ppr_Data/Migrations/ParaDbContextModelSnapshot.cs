@@ -34,13 +34,13 @@ namespace Ppr_Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("AccountName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<long>("AccountNumber")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("AccountPassword")
                         .IsRequired()
@@ -79,7 +79,7 @@ namespace Ppr_Data.Migrations
                     b.HasIndex("AccountEmail")
                         .IsUnique();
 
-                    b.HasIndex("AccountNumber")
+                    b.HasIndex("AccountId")
                         .IsUnique();
 
                     b.ToTable("Account", "dbo");
@@ -172,6 +172,9 @@ namespace Ppr_Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("CartAmount")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -209,6 +212,8 @@ namespace Ppr_Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId");
+
                     b.ToTable("Order", "dbo");
                 });
 
@@ -219,9 +224,6 @@ namespace Ppr_Data.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CustomerId")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
@@ -240,13 +242,12 @@ namespace Ppr_Data.Migrations
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetail", "dbo");
                 });
@@ -258,9 +259,6 @@ namespace Ppr_Data.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
@@ -302,6 +300,111 @@ namespace Ppr_Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Product", "dbo");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.ProductCategory", b =>
+                {
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUser")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategory", "dbo");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.Order", b =>
+                {
+                    b.HasOne("Ppr_Data.Domain.Account", "Account")
+                        .WithMany("Order")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.OrderDetail", b =>
+                {
+                    b.HasOne("Ppr_Data.Domain.Order", "Order")
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.ProductCategory", b =>
+                {
+                    b.HasOne("Ppr_Data.Domain.Account", "Account")
+                        .WithMany("ProductCategory")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ppr_Data.Domain.Category", "Category")
+                        .WithMany("ProductCategory")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ppr_Data.Domain.Product", "Product")
+                        .WithMany("ProductCategory")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.Account", b =>
+                {
+                    b.Navigation("Order");
+
+                    b.Navigation("ProductCategory");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.Category", b =>
+                {
+                    b.Navigation("ProductCategory");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.Order", b =>
+                {
+                    b.Navigation("OrderDetail");
+                });
+
+            modelBuilder.Entity("Ppr_Data.Domain.Product", b =>
+                {
+                    b.Navigation("ProductCategory");
                 });
 #pragma warning restore 612, 618
         }

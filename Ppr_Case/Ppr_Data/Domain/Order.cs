@@ -10,6 +10,8 @@ namespace Ppr_Data.Domain;
 [Table("Order", Schema = "dbo")]
 public class Order : BaseEntity
 {
+    public long AccountId { get; set; }
+    public virtual Account Account { get; set; }
     public long OrderId { get; set; }
     public string CartAmount { get; set; }
     public int CouponAmount { get; set; }
@@ -17,4 +19,6 @@ public class Order : BaseEntity
     public int PointsAmount { get; set; }
     public DateTime OrderDate { get; set; }
     public string ShippingAddress { get; set; }
+
+    public virtual List<OrderDetail> OrderDetail { get; set;}
 }

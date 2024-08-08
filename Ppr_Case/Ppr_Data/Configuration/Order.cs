@@ -20,5 +20,14 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(x => x.CartAmount).IsRequired(true);
         builder.Property(x => x.OrderDate).IsRequired(true);
         builder.Property(x => x.ShippingAddress).IsRequired(true);
+
+        builder.Property(x => x.AccountId).IsRequired(true);
+        builder.HasIndex(x => x.AccountId);
+
+        builder.HasMany(x => x.OrderDetail)
+            .WithOne(x => x.Order)
+            .HasForeignKey(x => x.OrderId)
+            .IsRequired(true)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

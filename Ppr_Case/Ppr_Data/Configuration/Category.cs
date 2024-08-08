@@ -23,5 +23,9 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.Property(x => x.CategoryUrl).IsRequired(true);
 
         builder.Property(x => x.CategoryTags).IsRequired(true);
+
+        builder.HasMany(c => c.ProductCategory)
+               .WithOne(pc => pc.Category)
+               .HasForeignKey(pc => pc.CategoryId);
     }
 }
