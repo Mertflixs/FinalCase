@@ -17,4 +17,5 @@ public interface IUnitOfWork {
     IGenericRepository<OrderDetail> OrderDetailRepository { get; }
     IGenericRepository<Coupon> CouponRepository { get; }
     IGenericRepository<Point> PointRepository { get; }
+    IGenericRepository<ProductCategory> ProductCategoryRepository { get; }
 }

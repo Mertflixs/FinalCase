@@ -8,6 +8,7 @@ namespace Ppr_Schema;
 
 public class OrderRequest : BaseRequest
 {
+    public long AccountId { get; set; }
     public long OrderId { get; set; }
     public string CartAmount { get; set; }
     public int CouponAmount { get; set; }
@@ -20,6 +21,7 @@ public class OrderRequest : BaseRequest
 
 public class OrderResponse : BaseResponse
 {
+    public long AccountId { get; set; }
     public long OrderId { get; set; }
     public string CartAmount { get; set; }
     public int CouponAmount { get; set; }

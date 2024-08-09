@@ -8,12 +8,14 @@ namespace Ppr_Schema;
 
 public class PointRequest : BaseRequest
 {
+    public long AccountId { get; set; }
     public long PointId { get; set; }
     public long TotalPoint { get; set; }
 }
 
 public class PointResponse : BaseResponse
 {
+    public long AccountId { get; set;}
     public long PointId { get; set;}
     public long TotalPoint { get; set;}
 }

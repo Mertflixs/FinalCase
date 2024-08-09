@@ -20,4 +20,4 @@ public record GetAccountByIdQuery(long AccountId) : IRequest<ApiResponse<Account
 
 public record GetAccountByAccountIdQuery() : IRequest<ApiResponse<AccountResponse>>;
 
-public record GetAccountByParametersQuery(long? AccountId, string AccountName, string AccountSurname, string AccountEmail) : IRequest<ApiResponse<List<AccountResponse>>>;
+public record GetAccountByParametersQuery(string AccountName, string AccountSurname, string AccountEmail) : IRequest<ApiResponse<List<AccountResponse>>>;

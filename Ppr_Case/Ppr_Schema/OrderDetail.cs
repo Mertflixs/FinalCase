@@ -10,7 +10,7 @@ public class OrderDetailRequest : BaseRequest
 {
     public long OrderDetailId { get; set; }
     public long OrderId { get; set; }
-    public long CustomerId { get; set; }
+    public long AccountId { get; set; }
     public long ProductId { get; set; }
     public int Quantity { get; set; }
 }
@@ -19,7 +19,7 @@ public class OrderDetailResponse : BaseRequest
 {
     public long OrderDetailId { get; set; }
     public long OrderId { get; set; }
-    public long CustomerId { get; set; }
+    public long AccountId { get; set; }
     public long ProductId { get; set; }
     public int Quantity { get; set; }
 }

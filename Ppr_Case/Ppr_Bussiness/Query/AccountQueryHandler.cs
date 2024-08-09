@@ -45,8 +45,6 @@ public class AccountQueryHandler :
     public async Task<ApiResponse<List<AccountResponse>>> Handle(GetAccountByParametersQuery request, CancellationToken cancellationToken)
     {
         var predicate = PredicateBuilder.New<Account>(true);
-        if (request.AccountId.HasValue)
-            predicate = predicate.And(x => x.AccountId == request.AccountId.Value);
         if (!string.IsNullOrEmpty(request.AccountName))
             predicate = predicate.And(x => x.AccountName.ToUpper().Contains(request.AccountName.ToUpper()));
         if (!string.IsNullOrEmpty(request.AccountSurname))

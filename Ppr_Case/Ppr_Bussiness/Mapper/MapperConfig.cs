@@ -12,6 +12,7 @@ public class MapperConfig : Profile
 {
     public MapperConfig()
     {
+        
         // Account mappings
         CreateMap<Account, AccountResponse>();
         CreateMap<AccountRequest, Account>();
