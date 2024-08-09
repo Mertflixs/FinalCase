@@ -12,6 +12,7 @@ public class AccountRequest : BaseRequest
     public int AccountStatus { get; set; }
     public int AccountPoint { get; set; }
     public int AccountWallet { get; set; }
+    public List<ProductCategoryResponse> ProductCategories { get; set; }
 }
 
 public class AccountResponse : BaseResponse
