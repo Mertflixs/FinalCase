@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Ppr_Base.Response;
 using Ppr_Bussiness.Cqrs;
 using Ppr_Schema;
@@ -24,6 +25,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<List<CouponResponse>>> Get()
         {
             var operation = new GetAllCouponQuery();
@@ -32,6 +34,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet("{CouponId}")]
+        [Authorize(Roles = "0, 1")]
         public async Task<ApiResponse<CouponResponse>> Post([FromRoute] long CouponId)
         {
             var operation = new GetCouponByIdQuery(CouponId);
@@ -40,6 +43,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<CouponResponse>> Post([FromBody] CouponRequest value)
         {
             var operation = new CreateCouponCommand(value);
@@ -48,6 +52,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPut("{CouponId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Put(long CouponId, [FromBody] CouponRequest value)
         {
             var operation = new UpdateCouponCommand(CouponId, value);
@@ -56,6 +61,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpDelete("{CouponId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Delete(long CouponId)
         {
             var operation = new DeleteCouponCommand(CouponId);

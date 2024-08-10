@@ -40,5 +40,9 @@ public class MapperConfig : Profile
         //Point Mapping
         CreateMap<Point, PointResponse>();
         CreateMap<PointRequest, Point>();
+
+        //ProductCategory Mapping
+        CreateMap<ProductCategory, ProductCategoryResponse>();
+        CreateMap<ProductCategoryRequest, ProductCategory>();
     }
 }

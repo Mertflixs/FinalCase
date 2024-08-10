@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Ppr_Base.Response;
 using Ppr_Bussiness.Cqrs;
 using Ppr_Schema;
@@ -23,6 +24,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<List<OrderDetailResponse>>> Get()
         {
             var operation = new GetAllOrderDetailQuery();
@@ -31,6 +33,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet("{OrderDetailId}")]
+        [Authorize(Roles = "0, 1")]
         public async Task<ApiResponse<OrderDetailResponse>> Post([FromRoute] long OrderDetailId)
         {
             var operation = new GetOrderDetailByIdQuery(OrderDetailId);
@@ -39,6 +42,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<OrderDetailResponse>> Post([FromBody] OrderDetailRequest value)
         {
             var operation = new CreateOrderDetailCommand(value);
@@ -47,6 +51,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPut("{OrderDetailId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Put(long OrderDetailId, [FromBody] OrderDetailRequest value)
         {
             var operation = new UpdateOrderDetailCommand(OrderDetailId, value);
@@ -55,6 +60,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpDelete("{OrderDetailId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Delete(long OrderDetailId)
         {
             var operation = new DeleteOrderDetailCommand(OrderDetailId);

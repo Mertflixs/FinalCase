@@ -17,7 +17,6 @@ public class Account : BaseEntity
     public int AccountRole { get; set; }
     public string AccountPassword { get; set; }
     public int AccountStatus { get; set; }
-    public int AccountPoint { get; set; }
     public int AccountWallet { get; set; }
     public string AccountIdentity { get; set; }
     public virtual List<Order> Order { get; set;}

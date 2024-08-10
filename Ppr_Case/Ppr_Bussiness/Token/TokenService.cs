@@ -52,7 +52,7 @@ public class TokenService : ITokenService
         {
             new Claim("AccountName", account.AccountName),
             new Claim("AccountId", account.Id.ToString()),
-            new Claim("AccountRole", account.AccountRole.ToString()),
+            new Claim(ClaimTypes.Role, account.AccountRole.ToString()),
             new Claim("AccountStatus", account.AccountStatus.ToString()),
             new Claim("AccountEmail", account.AccountEmail),
         };

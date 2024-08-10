@@ -13,6 +13,7 @@ public class Product : BaseEntity
     public long ProductId { get; set; }
     public string ProductName { get; set; }
     public string ProductDescription { get; set; }
+    public int ProductPrice { get; set; }
     public bool IsActive { get; set; }
     public string ProductFeatures { get; set; }
     public double RewardPercentage { get; set; }

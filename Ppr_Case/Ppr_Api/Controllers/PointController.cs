@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Ppr_Base.Response;
 using Ppr_Bussiness.Cqrs;
 using Ppr_Schema;
@@ -24,6 +25,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<List<PointResponse>>> Get()
         {
             var operation = new GetAllPointQuery();
@@ -32,6 +34,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet("{PointId}")]
+        [Authorize(Roles = "0, 1")]
         public async Task<ApiResponse<PointResponse>> Post([FromRoute] long PointId)
         {
             var operation = new GetPointByIdQuery(PointId);
@@ -40,6 +43,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<PointResponse>> Post([FromBody] PointRequest value)
         {
             var operation = new CreatePointCommand(value);
@@ -48,6 +52,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPut("{PointId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Put(long PointId, [FromBody] PointRequest value)
         {
             var operation = new UpdatePointCommand(PointId, value);
@@ -56,6 +61,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpDelete("{PointId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Delete(long PointId)
         {
             var operation = new DeletePointCommand(PointId);

@@ -10,7 +10,6 @@ public class AccountRequest : BaseRequest
     public int AccountRole { get; set; } // 0 normal user 1 admin
     public string AccountPassword { get; set;}
     public int AccountStatus { get; set; }
-    public int AccountPoint { get; set; }
     public int AccountWallet { get; set; }
     public string AccountIdentity { get; set; }
     public List<ProductCategoryResponse> ProductCategories { get; set; }
@@ -25,7 +24,6 @@ public class AccountResponse : BaseResponse
     public int AccountRole { get; set; } // 0 normal user 1 admin
     public string AccountPassword { get; set; }
     public int AccountStatus { get; set; }
-    public int AccountPoint { get; set; }
     public int AccountWallet { get; set; }
     public List<ProductCategoryResponse> ProductCategories { get; set; }
 }

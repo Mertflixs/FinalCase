@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Ppr_Base.Response;
 using Ppr_Bussiness.Cqrs;
 using Ppr_Schema;
@@ -23,6 +24,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<List<AccountResponse>>> Get()
         {
             var operation = new GetAllAccountQuery();
@@ -31,6 +33,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet("ByParamaters")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<List<AccountResponse>>> GetByParameters(
             [FromQuery] string? AccountName = null,
             [FromQuery] string? AccountSurname = null,
@@ -43,6 +46,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet("ByAccount")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<AccountResponse>> GetByAccountId()
         {
             var operation = new GetAccountByAccountIdQuery();
@@ -51,6 +55,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpGet("{AccountId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<AccountResponse>> Get([FromRoute] long AccountId)
         {
             var operation = new GetAccountByIdQuery(AccountId);
@@ -59,6 +64,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse<AccountResponse>> Post([FromBody] AccountRequest value)
         {
             var operation = new CreateAccountCommand(value);
@@ -67,6 +73,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpPut("{AccountId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Put(long AccountId, [FromBody] AccountRequest value)
         {
             var operation = new UpdateAccountCommand(AccountId, value);
@@ -75,6 +82,7 @@ namespace Ppr_Api.Controllers
         }
 
         [HttpDelete("{AccountId}")]
+        [Authorize(Roles = "1")]
         public async Task<ApiResponse> Delete(long AccountId)
         {
             var operation = new DeleteAccountCommand(AccountId);

@@ -14,56 +14,56 @@ namespace Ppr_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class ProductCategoryController : ControllerBase
     {
         private readonly IMediator mediator;
 
-        public CategoryController(IMediator mediator)
+        public ProductCategoryController(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
         [HttpGet]
         [Authorize(Roles = "0, 1")]
-        public async Task<ApiResponse<List<CategoryResponse>>> Get()
+        public async Task<ApiResponse<List<ProductCategoryResponse>>> Get()
         {
-            var operation = new GetAllCategoriesQuery();
+            var operation = new GetAllProductCategoryQuery();
             var res = await mediator.Send(operation);
             return res;
         }
 
-        [HttpGet("{CategoryId}")]
+        [HttpGet("{ProductCategoryId}")]
         [Authorize(Roles = "0, 1")]
-        public async Task<ApiResponse<CategoryResponse>> Get([FromRoute] long CategoryId)
+        public async Task<ApiResponse<ProductCategoryResponse>> Post([FromRoute] long ProductCategoryId)
         {
-            var operation = new GetCategoryByIdQuery(CategoryId);
+            var operation = new GetProductCategoryByIdQuery(ProductCategoryId);
             var res = await mediator.Send(operation);
             return res;
         }
 
         [HttpPost]
         [Authorize(Roles = "1")]
-        public async Task<ApiResponse<CategoryResponse>> Post([FromBody] CategoryRequest value)
+        public async Task<ApiResponse<ProductCategoryResponse>> Post([FromBody] ProductCategoryRequest value)
         {
-            var operation = new CreateCategoryCommand(value);
+            var operation = new CreateProductCategoryCommand(value);
             var res = await mediator.Send(operation);
             return res;
         }
 
-        [HttpPut("{CategoryId}")]
+        [HttpPut("{ProductCategoryId}")]
         [Authorize(Roles = "1")]
-        public async Task<ApiResponse> Put(long CategoryId, [FromBody] CategoryRequest value)
+        public async Task<ApiResponse> Put(long ProductCategoryId, [FromBody] ProductCategoryRequest value)
         {
-            var operation = new UpdateCategoryCommand(CategoryId, value);
+            var operation = new UpdateProductCategoryCommand(ProductCategoryId, value);
             var res = await mediator.Send(operation);
             return res;
         }
 
-        [HttpDelete("{CategoryId}")]
+        [HttpDelete("{ProductCategoryId}")]
         [Authorize(Roles = "1")]
-        public async Task<ApiResponse> Delete(long CategoryId)
+        public async Task<ApiResponse> Delete(long ProductCategoryId)
         {
-            var operation = new DeleteCategoryCommand(CategoryId);
+            var operation = new DeleteProductCategoryCommand(ProductCategoryId);
             var res = await mediator.Send(operation);
             return res;
         }

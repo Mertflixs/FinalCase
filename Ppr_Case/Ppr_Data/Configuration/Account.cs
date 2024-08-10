@@ -16,18 +16,14 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.Property(x => x.IsActive).IsRequired(true);
         builder.Property(x => x.InsertUser).IsRequired(true).HasMaxLength(128);
 
-        //builder.Property(x => x.AccountId).IsRequired(true);
-        //builder.HasIndex(x => x.AccountId).IsUnique(); // IsUnique yerine HasIndex ve IsUnique kullanımı
-
         builder.Property(x => x.AccountName).IsRequired(true).HasMaxLength(50);
         builder.Property(x => x.AccountSurname).IsRequired(true).HasMaxLength(50);
         builder.Property(x => x.AccountEmail).IsRequired(true);
-        builder.HasIndex(x => x.AccountEmail).IsUnique(); // IsUnique yerine HasIndex ve IsUnique kullanımı
+        builder.HasIndex(x => x.AccountEmail).IsUnique();
 
         builder.Property(x => x.AccountRole).IsRequired(true);
         builder.Property(x => x.AccountPassword).IsRequired(true);
-        builder.Property(x => x.AccountStatus).IsRequired(true); //bu kalkabilir
-        builder.Property(x => x.AccountPoint); // bunlar degisgenlik gosterebilir
+        builder.Property(x => x.AccountStatus).IsRequired(true);
         builder.Property(x => x.AccountWallet);
         builder.Property(x => x.AccountIdentity).IsRequired(true);
 
