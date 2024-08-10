@@ -29,6 +29,7 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.Property(x => x.AccountStatus).IsRequired(true); //bu kalkabilir
         builder.Property(x => x.AccountPoint); // bunlar degisgenlik gosterebilir
         builder.Property(x => x.AccountWallet);
+        builder.Property(x => x.AccountIdentity).IsRequired(true);
 
         builder.HasMany(x => x.Order)
             .WithOne(x => x.Account)

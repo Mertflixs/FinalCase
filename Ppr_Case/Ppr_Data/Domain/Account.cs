@@ -19,6 +19,7 @@ public class Account : BaseEntity
     public int AccountStatus { get; set; }
     public int AccountPoint { get; set; }
     public int AccountWallet { get; set; }
+    public string AccountIdentity { get; set; }
     public virtual List<Order> Order { get; set;}
     public virtual List<ProductCategory> ProductCategory { get; set; }
     public virtual List<Point> Point { get; set; }
