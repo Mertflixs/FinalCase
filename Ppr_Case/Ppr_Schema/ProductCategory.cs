@@ -19,12 +19,3 @@ public class ProductCategoryResponse : BaseResponse
     public long ProductId { get; set; }
     public long CategoryId { get; set; }
 }
-
-public class CategoryWithProductsResponse
-{
-    public long CategoryId { get; set; }
-    public string CategoryName { get; set; }
-    public string CategoryUrl { get; set; }
-    public string CategoryTags { get; set; }
-    public List<ProductResponse> Products { get; set; }
-}

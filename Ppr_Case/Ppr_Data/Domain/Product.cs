@@ -16,7 +16,7 @@ public class Product : BaseEntity
     public int ProductPrice { get; set; }
     public bool IsActive { get; set; }
     public string ProductFeatures { get; set; }
-    public double RewardPercentage { get; set; }
-    public double MaxRewardAmount { get; set; }
+    public decimal RewardPercentage { get; set; }
+    public decimal MaxRewardAmount { get; set; }
     public virtual List<ProductCategory> ProductCategory { get; set; }
 }

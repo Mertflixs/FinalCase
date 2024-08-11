@@ -18,6 +18,12 @@ using Ppr_Data.Context;
 using Ppr_Data.Domain;
 using Ppr_Data.UnitOfWork;
 using Ppr_Base.Token;
+using FluentValidation;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using FluentValidation.AspNetCore;
+using Ppr_Bussiness.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +34,11 @@ builder.Services.AddSingleton(jwtConfig);
 
 var connectionStringSql = builder.Configuration.GetConnectionString("MsSqlConnection");
 builder.Services.AddDbContext<ParaDbContext>(options => options.UseSqlServer(connectionStringSql));
+
+builder.Services.AddControllers().AddFluentValidation(x =>
+        {
+            x.RegisterValidatorsFromAssemblyContaining<BaseValidator>();
+        });
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();

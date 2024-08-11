@@ -14,9 +14,9 @@ public class ProductRequest : BaseRequest
     public int ProductPrice { get; set; }
     public bool IsActive { get; set; }
     public string ProductFeatures { get; set; }
-    public double RewardPercentage { get; set; }
-    public double MaxRewardAmount { get; set; }
-    public long CategoryId { get; set; } // categoryId categoryTable
+    public decimal RewardPercentage { get; set; }
+    public decimal MaxRewardAmount { get; set; }
+    public long CategoryId { get; set; }
 }
 
 public class ProductResponse : BaseResponse
