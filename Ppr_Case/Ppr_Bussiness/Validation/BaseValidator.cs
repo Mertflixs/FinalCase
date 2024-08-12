@@ -6,5 +6,4 @@ using System.Threading.Tasks;
 namespace Ppr_Bussiness.Validation;
 public class BaseValidator
 {
-
 }
