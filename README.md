@@ -68,18 +68,18 @@ The project follows a layered architecture, separating concerns into different l
 2. Navigate to the project directory:
    ```bash
    cd your-repo-name
-3. Install dependencies:
 Ensure you have all necessary dependencies installed
-   ```bash
+3. Install dependencies:
+   ```bash```
    dotnet restore
-```
-4. Configure the database connection:
 Open appsettings.json and update the connection string to point to your database.
-
-5. Apply migrations:
+4. Configure the database connection:
+   ```bash```
+   dotnet restore
 Apply the Entity Framework Core migrations to set up the database schema.
-    ```
-    dotnet ef database update ```
+5. Apply migrations:
+    ```bash
+    dotnet ef database update
 
 6. Clone the repository from GitHub:
    ```bash
