@@ -11,7 +11,7 @@ This project is a robust .NET-based application implementing various architectur
 - [Architecture](#architecture)
 - [Setup](#setup)
 - [Usage](#usage)
-- [API Documentation](#api-documentation)
+- [API Documentation](#documentation)
 - [Contributing](#contributing)
 - [License](#license)
 
