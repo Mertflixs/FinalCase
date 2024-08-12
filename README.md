@@ -62,20 +62,18 @@ The project follows a layered architecture, separating concerns into different l
 
 1. Clone the repository from GitHub:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/your-username/PaparaFinalCase.git
 2. Navigate to the project directory:
    ```bash
-   cd your-repo-name
+   cd PaparaFinalCase
 Ensure you have all necessary dependencies installed
 3. Install dependencies:
    ```bash```
    dotnet restore
-Open appsettings.json and update the connection string to point to your database.
 4. Configure the database connection:
-   ```bash```
-   dotnet restore
-Apply the Entity Framework Core migrations to set up the database schema.
+Open appsettings.json and update the connection string to point to your database.
 5. Apply migrations:
+Apply the Entity Framework Core migrations to set up the database schema.
     ```bash
     dotnet ef database update
 
