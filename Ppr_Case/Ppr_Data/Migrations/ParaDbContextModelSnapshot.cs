@@ -304,9 +304,9 @@ namespace Ppr_Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<double>("MaxRewardAmount")
+                    b.Property<decimal>("MaxRewardAmount")
                         .HasPrecision(18, 2)
-                        .HasColumnType("float(18)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductDescription")
                         .IsRequired()
@@ -329,9 +329,9 @@ namespace Ppr_Data.Migrations
                     b.Property<int>("ProductPrice")
                         .HasColumnType("int");
 
-                    b.Property<double>("RewardPercentage")
+                    b.Property<decimal>("RewardPercentage")
                         .HasPrecision(5, 2)
-                        .HasColumnType("float(5)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 

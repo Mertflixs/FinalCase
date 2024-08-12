@@ -92,8 +92,8 @@ namespace Ppr_Data.Migrations
                     ProductPrice = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     ProductFeatures = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    RewardPercentage = table.Column<double>(type: "float(5)", precision: 5, scale: 2, nullable: false),
-                    MaxRewardAmount = table.Column<double>(type: "float(18)", precision: 18, scale: 2, nullable: false),
+                    RewardPercentage = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
+                    MaxRewardAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     InsertUser = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

@@ -1,0 +1,9 @@
+create migration SQL Server
+     dotnet ef migrations add UserTable -s ../Ppr_Api/ --context ParaDbContext
+create migration PostgreSQL Server
+     dotnet ef migrations add InitialCreate -s ../Ppr_Api/ --context ParaDbContext    
+  
+db guncelleme SQL 
+     dotnet ef database update --project "./Ppr_Data" --startup-project "Ppr_Api/" --context ParaDbContext
+db guncelleme Postgre
+     dotnet ef database update --project "./Ppr_Data" --startup-project "Ppr_Api/" --context ParaDbContext
