@@ -66,26 +66,22 @@ The project follows a layered architecture, separating concerns into different l
 2. Navigate to the project directory:
    ```bash
    cd PaparaFinalCase
-Ensure you have all necessary dependencies installed
 3. Install dependencies:
-   ```bash```
-   dotnet restore
+    ```bash
+    dotnet restore
 4. Configure the database connection:
-Open appsettings.json and update the connection string to point to your database
+    ```bash
+    Open appsettings.json and update the connection string to point to your database
 
 5. Apply migrations:
-Apply the Entity Framework Core migrations to set up the database schema.
     ```bash
-    dotnet ef database update
-
-6. Clone the repository from GitHub:
-   ```bash
-   dotnet build
-   dotnet run
-
+    - Apply the Entity Framework Core migrations to set up the database schema.
+    - dotnet ef database update
+6. Run
+    ```bash
+    dotnet build
+    dotnet run
 The application will be available at https://localhost:5001 by default.
-
-
 
 ## Usage
 
