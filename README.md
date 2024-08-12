@@ -71,7 +71,8 @@ Ensure you have all necessary dependencies installed
    ```bash```
    dotnet restore
 4. Configure the database connection:
-Open appsettings.json and update the connection string to point to your database.
+Open appsettings.json and update the connection string to point to your database
+
 5. Apply migrations:
 Apply the Entity Framework Core migrations to set up the database schema.
     ```bash
